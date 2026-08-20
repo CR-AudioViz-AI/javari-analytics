@@ -20,5 +20,13 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    // 2026-08-21: e2e specs import @playwright/test, which is not a dependency of
+    // this app. Including them made the APP build fail on TEST tooling, which is
+    // the sort of false failure that gets type checking switched off again.
+    // Playwright type-checks them with its own config when the suite runs.
+    "e2e",
+    "playwright.config.ts"
+  ]
 }

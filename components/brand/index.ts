@@ -19,4 +19,6 @@ export { CreditsBar } from './CreditsBar';
 export { AuthButtons } from './AuthButtons';
 
 // Tailwind config extension
-export { brandConfig as tailwindBrandConfig } from './tailwind.brand.config';
+// 2026-08-21: re-exported './tailwind.brand.config', which does not exist in this
+// repo. Nothing imported tailwindBrandConfig, so the barrel simply pointed at a
+// missing file - a broken export that the disabled type checking never reported.

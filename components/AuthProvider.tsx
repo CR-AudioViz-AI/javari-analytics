@@ -2,7 +2,12 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from 'react';
 import { User, Session, AuthError, SupabaseClient } from '@supabase/supabase-js';
-import { createSupabaseBrowserClient } from '@/lib/supabase';
+// 2026-08-21: imported createSupabaseBrowserClient, which lib/supabase.ts does
+// NOT export - its browser factory is createClient(). The import resolved to
+// undefined and calling it threw on mount, so this provider crashed and every
+// consumer saw a signed-out app. Type checking is disabled in this repo, so the
+// build never said a word.
+import { createClient as createSupabaseBrowserClient } from '@/lib/supabase';
 
 type OAuthProvider = 'google' | 'github' | 'apple' | 'azure' | 'discord';
 type SubscriptionTier = 'free' | 'starter' | 'pro' | 'enterprise';

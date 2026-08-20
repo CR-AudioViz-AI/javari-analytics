@@ -195,6 +195,12 @@ export const CREDITS_CONFIG = {
     free: { name: 'Free', credits: 50, price: 0 },
     pro: { name: 'Pro', credits: 500, price: 19 },
     business: { name: 'Business', credits: 5000, price: 99 },
+    // 2026-08-21: enterprise was missing entirely. It is a real tier in the User
+    // contract, so CREDITS_CONFIG.plans[plan] returned undefined for those
+    // accounts and the credits bar rendered blank for the highest-paying
+    // customers. Type checking is disabled in this repo, so nothing said so -
+    // turning it on is what surfaced it.
+    enterprise: { name: 'Enterprise', credits: 28000, price: 299 },
   },
   
   topUpPacks: [
